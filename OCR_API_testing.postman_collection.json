@@ -1,0 +1,25 @@
+{
+	"info": {
+		"_postman_id": "8ced94af-dacf-461b-8ac7-8ccedf510c37",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_user_login_token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "upload_image_for_detection",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

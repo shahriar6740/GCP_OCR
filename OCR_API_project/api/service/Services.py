@@ -5,7 +5,6 @@ import pandas as pd
 from google.cloud import vision
 from fuzzywuzzy import process
 
-
 """
 Before stepping further, Set the GCP service json file as your environment variable.
 for Mac/Linux:
@@ -14,12 +13,14 @@ for windows:
     follow this link: https://cloud.google.com/vision/docs/detect-labels-image-client-libraries
 """
 
-class Services:
 
+class Services:
     ### read data ####
-    product_data = pd.read_csv("product_data.csv", usecols=[0], names=['colA'], header=None)
+
+    csv_path = os.path.join('api/service/product_data.csv')
+    product_data = pd.read_csv(csv_path, usecols=[0], names=['colA'], header=None)
     product_list = list(product_data['colA'])
-    print(product_list)
+    #print(product_list)
 
     def cleanResult(self, texts):
 
@@ -40,7 +41,7 @@ class Services:
         response = client.text_detection(image=image)
         texts = response.text_annotations
         gcp_output = self.cleanResult(texts)
-        #print(gcp_output)
+        # print(gcp_output)
         return gcp_output
 
     def getMatches(self, file_name):
@@ -51,14 +52,14 @@ class Services:
             p = process.extractOne(output, self.product_list)
             if p[1] >= 80:
                 matches.append(p[0])
-        result = {i: matches.count(i) for i in matches}
-        return result
+        match_result = {i: matches.count(i) for i in matches}
+        print(match_result)
+        return match_result
 
 
 if __name__ == "__main__":
     service = Services()
 
-    file_name = os.path.abspath('demo5.jpg')
+    file_name = os.path.join('media/demo5.jpg')
     result = service.getMatches(file_name)
     print(result)
-
