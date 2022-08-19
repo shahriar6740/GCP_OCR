@@ -1,7 +1,0 @@
-1. text detection
-2. logo/brand detection
-3. Merge the text output
-
-##### Matching ##
-1. Check the output text with internal database entries (brand/product information)
-2. if matches, select a counter to count.
